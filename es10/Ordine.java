@@ -18,7 +18,7 @@ public class Ordine {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Ordine Codice: ").append(codiceOrdine).append("\n");
-        sb.append("Data: ").append(data.getTime()).append("\n");
+        sb.append("Data: ").append(dataOrdine.getTime()).append("\n");
         sb.append("Dettagli:\n");
         for (DettaglioOrdine dettaglio : dettagli) {
             sb.append(dettaglio.toString()).append("\n");
@@ -65,10 +65,8 @@ public class Ordine {
     public void stampaDescrizioneOrdine() {
         System.out.println(this.toString());
     }
-}
 
     
-
     public int getCodiceOrdine() {
         return codiceOrdine;
     }
@@ -80,12 +78,6 @@ public class Ordine {
     }
     public void setDataOrdine(GregorianCalendar dataOrdine) {
         this.dataOrdine = dataOrdine;
-    }
-    public DettaglioOrdine getDettagli() {
-        return dettagli;
-    }
-    public void setDettagli(DettaglioOrdine dettagli) {
-        this.dettagli = dettagli;
     }
     
 }
