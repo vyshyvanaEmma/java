@@ -15,7 +15,6 @@ public class Main {
 
         Ordine ordine1 = new Ordine(1001, new GregorianCalendar(2024, 9, 8)); 
 
-
         ordine1.aggiungiAdOrdine(d1);
         ordine1.aggiungiAdOrdine(d2);
         ordine1.aggiungiAdOrdine(d3);
@@ -36,5 +35,7 @@ public class Main {
 
         float sconto = 10;
         System.out.println("\nTotale ordine con sconto del " + sconto + "%: " + ordine1.calcolaTotale(sconto));
+
+        
     }
 }
