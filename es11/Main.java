@@ -1,10 +1,12 @@
 public class Main {
     public static void main(String[] args) {
-        LibroCartaceo libroCartaceo = new LibroCartaceo(10, true, "J.K. Rowling", "Harry Potter e la Pietra Filosofale", "9780747532743", 1997,
-                "Bloomsbury", 19.99);
+        LibroCartaceo libroCartaceo = new LibroCartaceo(1.5, true, "Mario", "Rossi", "RSSMRA80A01H501Z", 
+        "La Programmazione Java", "978-1234567890", 2020, 
+        "Casa Editrice ABC", 29.99);
 
-        LibroDigitale libroDigitale = new LibroDigitale(1500,".epub","George Orwell","Secker & Warburg", "9780451524935", 1949, "Balcone",
-                8.99);
+        LibroDigitale libroDigitale = new LibroDigitale("Mario", "Rossi", "RSSMRA80A01H501Z", 500, ".pdf", 
+        "Corso di HTML", "978-1122334455", 2022, 
+        "Casa Editrice QRS", 9.99);
         LibreriaOnline libreria = new LibreriaOnline("Libri per tutti");
 
         libreria.aggiungiLibro(libroCartaceo);

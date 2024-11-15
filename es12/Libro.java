@@ -18,6 +18,15 @@ public class Libro {
         this.prezzoDiVendita = prezzoDiVendita;
     }
 
+    public Libro(Libro copyLibro){
+        this.autore = new Autore(copyLibro.getAutore().getNome(),copyLibro.getAutore().getCognome(),copyLibro.getAutore().getCodFiscale());
+        this.titolo = copyLibro.getTitolo();
+        this.isbn = copyLibro.getIsbn();
+        this.annoPublicazione = copyLibro.getAnnoPublicazione();
+        this.casaEditrice = copyLibro.getCasaEditrice();
+        this.prezzoDiVendita = copyLibro.getPrezzoDiVendita();
+    }
+
     public String getTitolo() {
         return titolo;
     }

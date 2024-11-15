@@ -39,7 +39,11 @@ public class LibreriaOnline{
         }
         return null;
     }
-
+    public void stampaLibri() {
+        for (Libro l1 : libri) {
+            System.out.println(l1);
+        }
+    }
     public String getNome() {
         return nome;
     }
