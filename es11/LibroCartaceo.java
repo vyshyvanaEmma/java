@@ -30,5 +30,8 @@ public class LibroCartaceo extends Libro{
     public static void setQtainMagazzino(int qtainMagazzino) {
         LibroCartaceo.qtainMagazzino = qtainMagazzino;
     }
-    
+    @Override
+    public String toString() {
+        return super.toString() + " (Cartaceo, " + peso + "kg, " + (copertinaRigida ? "Copertina rigida" : "Copertina morbida") + ")";
+    }
 }

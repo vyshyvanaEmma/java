@@ -52,9 +52,5 @@ public class LibreriaOnline{
     public void setLibri(ArrayList<Libro> libri) {
         this.libri = libri;
     }
-    @Override
-    public String toString() {
-        return "Libreria Online: " + nome + "\nLibri disponibili: " + magazzino.size();
-    }
 
 }
