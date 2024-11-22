@@ -48,6 +48,17 @@ public class Cocktail {
         return somma;
     }
 
+    
+    public void stampaCaratteristiche() {
+        if (this instanceof CocktailAlcolico ca) {
+            System.out.println("Cocktail Alcolico: " + getNomeC() + ", Gradazione: " + ca.getGradazione());
+        } else if (this instanceof CocktailAnalcolico ca) {
+            System.out.println("Cocktail Analcolico: " + getNomeC() + ", Versione speciale: " + ca.isStato());
+        } else {
+            System.out.println("Cocktail: " + getNomeC());
+        }
+    }
+
     public String getNomeC() {
         return nomeC;
     }
