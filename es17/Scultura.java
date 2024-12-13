@@ -1,7 +1,7 @@
 public class Scultura extends OpereArte {
     private double base, altezza, profondita;
 
-    public Scultura(String titolo, String artista, double quotazione, double base, double altezza, double profondita) {
+    public Scultura(String titolo, Artista artista, double quotazione, double base, double altezza, double profondita) {
         super(titolo, artista, quotazione);
         this.altezza = altezza;
         this.base = base;

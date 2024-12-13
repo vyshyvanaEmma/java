@@ -1,8 +1,9 @@
 abstract class OpereArte {
-    private String titolo, artista;
+    private String titolo;
     private double quotazione;
+    private Artista artista;
 
-    public OpereArte(String titolo, String artista, double quotazione) {
+    public OpereArte(String titolo, Artista artista, double quotazione) {
         this.titolo = titolo;
         this.artista = artista;
         this.quotazione = quotazione;
@@ -29,11 +30,11 @@ abstract class OpereArte {
         this.titolo = titolo;
     }
 
-    public String getArtista() {
+    public Artista getArtista() {
         return artista;
     }
 
-    public void setArtista(String artista) {
+    public void setArtista(Artista artista) {
         this.artista = artista;
     }
 

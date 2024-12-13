@@ -145,6 +145,17 @@ public class CollezioneArte{
         return o;
     }
 
+    public int quantitaArtisti(Artista a) {
+        int tot = 0;
+        for (OpereArte o : opere) {
+            switch (categoria) {
+                case PITTORE:
+                    tot++;
+                    break;
+            }
+        }
+        return tot;
+    }
 
     public String getNome() {
         return nome;

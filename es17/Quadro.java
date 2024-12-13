@@ -2,7 +2,7 @@ public class Quadro extends OpereArte{
 
     private double altezza, base;
 
-    public Quadro(String titolo, String artista, double quotazione, double altezza, double base){
+    public Quadro(String titolo, Artista artista, double quotazione, double altezza, double base){
         super(titolo, artista, quotazione);
         this.altezza = altezza;
         this.base = base;
