@@ -23,22 +23,26 @@ public class CollezioneArte{
         return operaPiuCostosa.getArtista();
     }
 
-    public int quantitaQuadro(){
-        int tot = 0;
-        for(int i = 0; i < opere.size(); i++){
-            OpereArte o = opere.get(i);
-            if(o instanceof Quadro){
-                tot++;
-            }
-        }
-        return tot;
+
+    public enum Categoria {
+        QUADRO,
+        SCULTURA;
     }
-    public int quantitaScultura(){
+
+    public int quantitaOpere(Categoria categoria) {
         int tot = 0;
-        for(int i = 0; i < opere.size(); i++){
-            OpereArte o = opere.get(i);
-            if(o instanceof Scultura){
-                tot++;
+        for (OpereArte o : opere) {
+            switch (categoria) {
+                case QUADRO:
+                    if (o instanceof Quadro) {
+                        tot++;
+                    }
+                    break;
+                case SCULTURA:
+                    if (o instanceof Scultura) {
+                        tot++;
+                    }
+                    break;
             }
         }
         return tot;
