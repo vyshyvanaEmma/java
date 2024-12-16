@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-
 public class CollezioneArte{
     private String nome, luogo;
     private ArrayList<OpereArte> opere;
@@ -25,45 +24,51 @@ public class CollezioneArte{
     }
 
 
-    public double prezzoTotaleCollezione() {
-        double tot = 0;
-        for (OpereArte o : opere) {
-            tot += o.getQuotazione();
-        }
-        return tot;
+    public enum Categoria {
+        QUADRO,
+        SCULTURA;
     }
-    
-    public double prezzoTotaleCollezioneQuadri() {
-        double tot = 0;
+
+    public int quantitaOpere(Categoria categoria) {
+        int tot = 0;
         for (OpereArte o : opere) {
-            if (o instanceof Quadro) {
-                tot += o.getQuotazione();
-            }
-        }
-        return tot;
-    }
-    
-    public double prezzoTotaleCollezioneSculture() {
-        double tot = 0;
-        for (OpereArte o : opere) {
-            if (o instanceof Scultura) {
-                tot += o.getQuotazione();
+            if (categoria == Categoria.QUADRO && o instanceof Quadro) {
+                tot++;
+            } else if (categoria == Categoria.SCULTURA && o instanceof Scultura) {
+                tot++;
             }
         }
         return tot;
     }
     
 
-    public int quantitaOpere(Categoria categoria) {
-    int count = 0;
-    for (OpereArte opera : opere) {
-        if (categoria == Categoria.QUADRO && opera instanceof Quadro) {
-            count++;
-        } else if (categoria == Categoria.SCULTURA && opera instanceof Scultura) {
-            count++;
+    public double prezzoTotaleCollezione(){
+        double tot = 0;
+        for(int i = 0; i < opere.size(); i++){
+            tot += opere.get(i).getQuotazione();
         }
+        return tot;
     }
-    return count;
+
+    public double prezzoTotaleCollezioneQuadri(){
+        double tot = 0;
+        for(int i = 0; i < opere.size(); i++){
+            OpereArte o = opere.get(i);
+            if(o instanceof Quadro){
+                tot += opere.get(i).getQuotazione();
+            }
+        }
+        return tot;
+    }
+    public double prezzoTotaleCollezioneSculture(){
+        double tot = 0;
+        for(int i = 0; i < opere.size(); i++){
+            OpereArte o = opere.get(i);
+            if(o instanceof Scultura){
+                tot += opere.get(i).getQuotazione();
+            }
+        }
+        return tot;
     }
 
 
@@ -92,9 +97,9 @@ public class CollezioneArte{
     public String datiOpere() {
         String risultato = "";
         for (OpereArte opera : opere) {
-            risultato += "/nTitolo: " + opera.getTitolo() +
-                         ", Artista: " + opera.getArtista().getNome() + " " + opera.getArtista().getCognome() +
-                         ", Prezzo: " + opera.getQuotazione() + "\n";
+            risultato += "Titolo: " + opera.getTitolo() 
+                       + ", Artista: " + opera.getArtista().getNome() + " " + opera.getArtista().getCognome() 
+                       + ", Prezzo: " + opera.getQuotazione() + "\n";
         }
         return risultato;
     }
@@ -113,18 +118,41 @@ public class CollezioneArte{
         return o;
     }
 
-    public ArrayList<OpereArte> opereMagioreMedia() {
+    public ArrayList<OpereArte> opereMagioreMedia(double q){
         ArrayList<OpereArte> o = new ArrayList<OpereArte>();
-        double media = prezzoTotaleCollezione() / opere.size();
-        
-        for (OpereArte op : opere) {
-            if (op.getQuotazione() > media) {
+        double media = 0;
+        double somma = 0;
+        int quantita = 0;
+
+        for(int i = 0; i < opere.size(); i++){
+            OpereArte op = opere.get(i);
+            quantita++;
+            somma += op.getQuotazione();
+        }
+
+        media = somma/quantita;
+
+        for(int i = 0; i < opere.size(); i++){
+            OpereArte op = opere.get(i);
+            if(op.getQuotazione() > media){
                 o.add(op);
             }
         }
+
         return o;
     }
 
+    public int quantitaArtisti() {
+        int tot = 0;
+        for (OpereArte o : opere) {
+            Artista artista = o.getArtista();
+            if (artista.getTipiArt().size() == 1 && artista.getTipiArt().contains(TipoArtista.PITTORE)) {
+                tot++;
+            }
+        }
+        return tot;
+    }
+    
 
     public String getNome() {
         return nome;

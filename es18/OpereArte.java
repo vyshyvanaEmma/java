@@ -19,9 +19,8 @@ abstract class OpereArte {
 
     @Override
     public String toString() {
-        return "/nTitolo=" + titolo + ", Artista=" + artista.getNome() + " " + artista.getCognome() + ", Quotazione=" + quotazione;
+        return "/nTtitolo=" + titolo + ", Artista=" + artista + ", Quotazione=" + quotazione + "/n";
     }
-    
 
     public String getTitolo() {
         return titolo;
