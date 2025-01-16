@@ -1,3 +1,4 @@
+package es20;
 
 public class BagaglioStiva extends Bagaglio{
 

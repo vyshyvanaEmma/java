@@ -1,3 +1,4 @@
+package es20;
 public class BagaglioAMano extends Bagaglio{
     
     public static double LIMITE_PESO = 8;

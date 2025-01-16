@@ -1,3 +1,4 @@
+package es20;
 public abstract class Bagaglio implements Eccedente{
     private String nome;
     private double peso;

@@ -1,3 +1,5 @@
+package es20;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Collections;
@@ -5,6 +7,7 @@ import java.util.Collections;
 public class Volo {
 
     private ArrayList<Bagaglio> bagagli;
+    private ArrayList<Proprietario> proprietari;
     private String codice;
     private String destination;
     private String origine;
@@ -12,6 +15,7 @@ public class Volo {
 
     public Volo(String codice, String destination, String origine, String data) {
         this.bagagli = new ArrayList<>();
+        this.proprietari = new ArrayList<>();
         this.codice = codice;
         this.destination = destination;
         this.origine = origine;
@@ -122,6 +126,82 @@ public class Volo {
             }
         });
         return lista;
+    }
+
+    public ArrayList<BagaglioStiva> elencoBagaglioStivaOrdinatiPeso(){
+        ArrayList<BagaglioStiva> lista = new ArrayList<>();
+        for(Bagaglio b : bagagli){
+            if(b instanceof BagaglioStiva){
+                lista.add((BagaglioStiva)b);
+            }
+        }
+        Collections.sort(lista, new Comparator<BagaglioStiva>(){
+            @Override
+            public int compare(BagaglioStiva b1, BagaglioStiva b2){
+                return Double.compare(b1.getPeso(), b2.getPeso());
+            }
+        });
+        return lista;
+    }
+
+    public ArrayList<BagaglioAMano> elencoBagagliAManoEccedenti() {
+        ArrayList<BagaglioAMano> lista = new ArrayList<>();
+        for(Bagaglio b : bagagli){
+            if(b instanceof BagaglioAMano && b.eEccedente()){
+                lista.add((BagaglioAMano)b);
+            }
+        }
+        Collections.sort(lista, new Comparator<BagaglioAMano>(){
+            @Override
+            public int compare(BagaglioAMano b1, BagaglioAMano b2){
+                return Double.compare(b1.getPeso(), b2.getPeso());
+            }
+        });
+        return lista;
+    }
+
+    public boolean addProprietario(Bagaglio b, String nomeProprietario){
+        Proprietario proprietario = trovaProprietario(nomeProprietario);
+        if (proprietario == null) {
+            proprietario = new Proprietario(nomeProprietario);
+            proprietari.add(proprietario);
+        }
+        proprietario.addBagaglio(b);
+        bagagli.add(b); 
+        return true;
+    }
+
+    public Proprietario trovaProprietario(String nome) {
+        for (Proprietario p : proprietari) {
+            if (p.getNome().equals(nome)) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<Bagaglio> elencoBagagliPerProprietario(String nomeProprietario) {
+        Proprietario p = trovaProprietario(nomeProprietario);
+        if (p != null) {
+            return p.elencoBagagliOrdinatiPerPeso();
+        }
+        return new ArrayList<>();
+    }
+
+    public int numeroBagagliEccedenti(String nomeProprietario) {
+        Proprietario p = trovaProprietario(nomeProprietario);
+        if (p != null) {
+            return p.numeroBagagliEccedenti();
+        }
+        return 0;
+    }
+
+    public String proprietarioConPiùBagagli(String proprietario1, String proprietario2) {
+        Proprietario p1 = trovaProprietario(proprietario1);
+        Proprietario p2 = trovaProprietario(proprietario2);
+        int count1 = (p1 != null) ? p1.getBagagli().size() : 0;
+        int count2 = (p2 != null) ? p2.getBagagli().size() : 0;
+        return count1 > count2 ? proprietario1 : proprietario2;
     }
 
     public ArrayList<Bagaglio> getBagagli() {
