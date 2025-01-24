@@ -21,17 +21,10 @@ public class LibroDigitale extends Libro {
     public String getDettagliSpecifici() {
         return "Dimensioni: " + dimensioni + "KB, Estensione file: " + estensioneFile;
     }
+
     @Override
-    protected Object clone() {
-        return new Libro(this); 
-    }
-    @Override
-    public Object clone() {
-        try {
-            return super.clone();
-        } catch (CloneNotSupportedException e) {
-            return new Libro(this);  
-        }
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 
 }

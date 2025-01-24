@@ -68,6 +68,7 @@ public class LibreriaOnline {
             Comparator.comparing(Libro::getTitolo).reversed());
         return ordinati;
     }
+    
 
     public ArrayList<Libro> getLibri() {
         return new ArrayList<>(libri);

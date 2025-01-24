@@ -48,6 +48,29 @@ public abstract class Libro implements Ordinabile, Cloneable, Comparable<Libro> 
     public double getPrezzoDiVendita() {
         return prezzoDiVendita;
     }
+    public void setAutore(Autore autore) {
+        this.autore = autore;
+    }
+
+    public void setTitolo(String titolo) {
+        this.titolo = titolo;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    public void setAnnoPublicazione(int annoPublicazione) {
+        this.annoPublicazione = annoPublicazione;
+    }
+
+    public void setCasaEditrice(String casaEditrice) {
+        this.casaEditrice = casaEditrice;
+    }
+
+    public void setPrezzoDiVendita(double prezzoDiVendita) {
+        this.prezzoDiVendita = prezzoDiVendita;
+    }
 
     public abstract String getDettagliSpecifici();
 
@@ -65,17 +88,10 @@ public abstract class Libro implements Ordinabile, Cloneable, Comparable<Libro> 
     public String getChiaveOrdinamento() {
         return titolo;
     }
+
     @Override
-    public Object clone() {
-        return new Libro(this); 
-    }
-    @Override
-    public Object clone() {
-        try {
-            return super.clone();
-        } catch (CloneNotSupportedException e) {
-            return new Libro(this); 
-        }
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 
 
