@@ -1,37 +1,59 @@
-
-
-public class LibroCartaceo extends Libro{
+public class LibroCartaceo extends Libro {
     private double peso;
     private boolean copertinaRigida;
-    private static int qtainMagazzino = 0;
-    
-    public LibroCartaceo(double peso, boolean copertinaRigid, String nome, String cognome, String codFiscale, String titolo, String isbn, int annoPublicazione, String casaEditrice,
-    double prezzoDiVendita) {
-        super(nome, cognome, codFiscale, titolo, isbn, annoPublicazione, casaEditrice, prezzoDiVendita);
+    private int quantitaInMagazzino;
+
+    public LibroCartaceo(double peso, boolean copertinaRigida, String nomeAutore, String cognomeAutore,
+                         String codiceFiscaleAutore, String titolo, String isbn, int annoPubblicazione,
+                         String casaEditrice, double prezzoDiVendita, int quantitaInMagazzino) {
+        super(nomeAutore, cognomeAutore, codiceFiscaleAutore, titolo, isbn, annoPubblicazione, casaEditrice, prezzoDiVendita);
         this.peso = peso;
         this.copertinaRigida = copertinaRigida;
+        this.quantitaInMagazzino = 1;
     }
-    
+
+    public void incrementaQuantita() {
+        this.quantitaInMagazzino++;
+    }
+
+    public void decrementaQuantita() {
+        if (this.quantitaInMagazzino > 0) {
+            this.quantitaInMagazzino--;
+        }
+    }
+
+    public int getQuantitaInMagazzino() {
+        return quantitaInMagazzino;
+    }
+
+    public void setQuantitaInMagazzino(int quantitaInMagazzino) {
+        this.quantitaInMagazzino = quantitaInMagazzino;
+    }
+
+
     public double getPeso() {
         return peso;
     }
-    public void setPeso(double peso) {
-        this.peso = peso;
-    }
+
     public boolean isCopertinaRigida() {
         return copertinaRigida;
     }
-    public void setCopertinaRigida(boolean copertinaRigida) {
-        this.copertinaRigida = copertinaRigida;
-    }
-    public static int getQtainMagazzino() {
-        return qtainMagazzino;
-    }
-    public static void setQtainMagazzino(int qtainMagazzino) {
-        LibroCartaceo.qtainMagazzino = qtainMagazzino;
+
+    @Override
+    public String getDettagliSpecifici() {
+        return "Peso: " + peso + "kg, Copertina: " + (copertinaRigida ? "Rigida" : "Morbida");
     }
     @Override
-    public String toString() {
-        return super.toString() + " (Cartaceo, " + peso + "kg, " + (copertinaRigida ? "Copertina rigida" : "Copertina morbida") + ")";
+    protected Object clone() {
+        return new Libro(this); 
     }
+    @Override
+    public Object clone() {
+        try {
+            return super.clone();
+        } catch (CloneNotSupportedException e) {
+            return new Libro(this);
+        }
+    }
+
 }

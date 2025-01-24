@@ -1,16 +1,14 @@
 
-public class Libro {
+public abstract class Libro implements Ordinabile, Cloneable, Comparable<Libro> {
     private Autore autore;
-
     private String titolo;
     private String isbn;
     private int annoPublicazione;
     private String casaEditrice;
     private double prezzoDiVendita;
 
-    public Libro(String nome, String cognome, String codFiscale, String titolo, String isbn, int annoPublicazione, String casaEditrice,
-            double prezzoDiVendita) {
-        this.autore = new Autore(nome,cognome,codFiscale);
+    public Libro(String nome, String cognome, String codFiscale, String titolo, String isbn, int annoPublicazione, String casaEditrice, double prezzoDiVendita) {
+        this.autore = new Autore(nome, cognome, codFiscale);
         this.titolo = titolo;
         this.isbn = isbn;
         this.annoPublicazione = annoPublicazione;
@@ -18,8 +16,8 @@ public class Libro {
         this.prezzoDiVendita = prezzoDiVendita;
     }
 
-    public Libro(Libro copyLibro){
-        this.autore = new Autore(copyLibro.getAutore().getNome(),copyLibro.getAutore().getCognome(),copyLibro.getAutore().getCodFiscale());
+    public Libro(Libro copyLibro) {
+        this.autore = new Autore(copyLibro.getAutore());
         this.titolo = copyLibro.getTitolo();
         this.isbn = copyLibro.getIsbn();
         this.annoPublicazione = copyLibro.getAnnoPublicazione();
@@ -27,46 +25,58 @@ public class Libro {
         this.prezzoDiVendita = copyLibro.getPrezzoDiVendita();
     }
 
-    public String getTitolo() {
-        return titolo;
-    }
-    public void setTitolo(String titolo) {
-        this.titolo = titolo;
-    }
-    public String getIsbn() {
-        return isbn;
-    }
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-    public int getAnnoPublicazione() {
-        return annoPublicazione;
-    }
-    public void setAnnoPublicazione(int annoPublicazione) {
-        this.annoPublicazione = annoPublicazione;
-    }
-    public String getCasaEditrice() {
-        return casaEditrice;
-    }
-    public void setCasaEditrice(String casaEditrice) {
-        this.casaEditrice = casaEditrice;
-    }
-    public double getPrezzoDiVendita() {
-        return prezzoDiVendita;
-    }
-    public void setPrezzoDiVendita(double prezzoDiVendita) {
-        this.prezzoDiVendita = prezzoDiVendita;
-    }
     public Autore getAutore() {
         return autore;
     }
 
-    public void setAutore(Autore autore) {
-        this.autore = autore;
+    public String getTitolo() {
+        return titolo;
     }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public int getAnnoPublicazione() {
+        return annoPublicazione;
+    }
+
+    public String getCasaEditrice() {
+        return casaEditrice;
+    }
+
+    public double getPrezzoDiVendita() {
+        return prezzoDiVendita;
+    }
+
+    public abstract String getDettagliSpecifici();
+
     @Override
     public String toString() {
-        return titolo + " (ISBN: " + isbn + ")";
+        return titolo + " (ISBN: " + isbn + ", Prezzo: " + prezzoDiVendita + "€)";
     }
+
+    @Override
+    public int compareTo(Libro altro) {
+        return Double.compare(this.prezzoDiVendita, altro.prezzoDiVendita);
+    }
+
+    @Override
+    public String getChiaveOrdinamento() {
+        return titolo;
+    }
+    @Override
+    public Object clone() {
+        return new Libro(this); 
+    }
+    @Override
+    public Object clone() {
+        try {
+            return super.clone();
+        } catch (CloneNotSupportedException e) {
+            return new Libro(this); 
+        }
+    }
+
 
 }
