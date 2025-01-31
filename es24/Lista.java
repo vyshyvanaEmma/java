@@ -70,11 +70,11 @@ public class Lista {
         return false; 
     }
 
-    public int wordsWithFirstLetter(char letter) {
+    public int wordsWithFirstLetter(char l) {
         int count = 0;
         Nodo corrente = testa;
         while (corrente != null) {
-            if (corrente.getInfo().charAt(0) == letter) {
+            if (corrente.getInfo().charAt(0) == l) {
                 count++; 
             }
             corrente = corrente.getNext();
