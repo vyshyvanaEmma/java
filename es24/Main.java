@@ -15,7 +15,7 @@ public class Main {
                 "2) Cancella la parola in lista\r\n" + 
                 "3) Stampa tutto il contenuto della lista\r\n" + 
                 "4) Verifica se esiste una parola palidroma di una parola inserita\r\n" + 
-                "5) Verifica se esistono piu di due parole palidrome\r\n" + 
+                "5) " +
                 "6) Restituisce la quantita di parola che inziano con la lettera inserita\r\n" + 
                 "0)Termina il programma");
             System.out.println("Inserisci la tua scelta: ");
