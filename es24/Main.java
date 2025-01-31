@@ -53,7 +53,7 @@ public class Main {
                     lista.printWords();
                     break;
                 case 4:
-                    if(searchPalisrome()){
+                    if(lista.searchPalindrome()){
                         System.out.println("Esiste una parola palidroma");
                     }else{
                         System.out.println("Non esiste una parola palidroma");
