@@ -49,9 +49,8 @@ public class Main {
                     }
                     break;
                 case 3: 
-                    
                     System.out.println("Contenuto della lista:");
-                    lista.stampaLista();
+                    lista.printWords();
                     break;
                 case 4:
                     

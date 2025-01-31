@@ -35,7 +35,7 @@ public class Lista {
         return false;  
     }
 
-    public void stampaLista() {
+    public void printWords() {
         Nodo corrente = testa;
         while (corrente != null) {
             System.out.println(corrente.getInfo());
@@ -64,5 +64,18 @@ public class Lista {
             return false;
         }
     }
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        Nodo corrente = testa;
+        
+        while (corrente != null) {
+            sb.append(corrente.getInfo()).append(" ");
+            corrente = corrente.getNext();
+        }
+        
+        return sb.toString(); 
+    }
+
     
 }
