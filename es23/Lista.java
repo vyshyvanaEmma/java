@@ -12,15 +12,8 @@ public class Lista {
             return false;
         }
         Nodo nuovoNodo = new Nodo(parola);
-        if(testa==null){
-            testa = nuovoNodo;
-        }else{
-            Nodo corrente = testa;
-            while(corrente.getNext() != null){
-                corrente = corrente.getNext();
-            }
-            corrente.setNext(nuovoNodo);
-        }
+        nuovoNodo.setNext(testa);
+        testa = nuovoNodo;
         return true;
     }
     public boolean cercaParola(String p){
@@ -42,6 +35,7 @@ public class Lista {
             corrente = corrente.getNext();
         }
     }
+
     public boolean rimuoviPrimaParola(String p){
         if (testa == null) {
             return false;  
@@ -64,6 +58,7 @@ public class Lista {
             return false;
         }
     }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -76,6 +71,5 @@ public class Lista {
         
         return sb.toString(); 
     }
-
     
 }
