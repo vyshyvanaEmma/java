@@ -1,3 +1,5 @@
+package es26;
+
 public interface Coda<T> {
     void accoda(T info);
     T estrai();

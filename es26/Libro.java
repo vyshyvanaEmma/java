@@ -1,3 +1,4 @@
+package es26;
 
 abstract class Libro{
     private String titolo;
