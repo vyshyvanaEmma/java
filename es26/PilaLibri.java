@@ -28,7 +28,7 @@ public class PilaLibri implements Pila<Libro> {
     @Override
     public Libro top() {
         if (isEmpty()) {
-            throw new IllegalStateException("La pila è vuota");  
+            throw new IllegalStateException("La pila e' vuota");  
         }
         return testa.getInfo();  
     }
