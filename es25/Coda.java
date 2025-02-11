@@ -1,3 +1,4 @@
+package es25;
 public interface Coda<T> {
     void accoda(T info);
     T estrai();

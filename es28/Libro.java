@@ -8,7 +8,6 @@ public class Libro {
     private double prezzoDiVendita;
     private Autore autore;  
 
-    // Costruttore corretto
     public Libro(String titolo, String isbn, int annoPubblicazione, String casaEditrice, double prezzoDiVendita, Autore autore) {
         this.titolo = titolo;
         this.isbn = isbn;
