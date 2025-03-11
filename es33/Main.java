@@ -1,26 +1,36 @@
 public class Main {
     public static void main(String[] args) {
-
         Coda coda = new Coda();
         Pila pila = new Pila();
+
         Cantina cantina = new Cantina(coda, pila);
 
-        cantina.accodaProdotto(new Libro("L1", 3.0, "Libro 1"));
-        cantina.accodaProdotto(new Libro("L2", 5.0, "Libro2"));
-        cantina.accodaProdotto(new Prodotto("P1")); 
-        cantina.accodaProdotto(new Libro("L3", 4.0, "Libro3"));
-        cantina.accodaProdotto(new Libro("L4", 2., "Libro4"));
+        Libro libro1 = new Libro("L1", 3.0, "Titolo1");
+        Libro libro2 = new Libro("L2", 10.0, "Titolo2");
+        Libro libro3 = new Libro("L3", 2.0, "Titolo3");
+        Prodotto prodottoNonLibro = new Prodotto("P1");
 
-        System.out.println("Stato iniziale della coda:");
+        cantina.accodaProdotto(libro1);
+        cantina.accodaProdotto(prodottoNonLibro);
+        cantina.accodaProdotto(libro2);
+        cantina.accodaProdotto(libro3);
+
+        System.out.println("Contenuto iniziale della coda:");
         cantina.stampaCoda();
 
-        System.out.println("\nInizio del trasloco...");
-        cantina.effetuaTrasloco();
+        System.out.println("\nRiempiamo il pacco con i libri (fino a 10kg):");
+        cantina.riempiPaccoLibri();
 
-        System.out.println("\nStato finale della coda:");
+        System.out.println("\nScarichiamo il pacco giunto a destinazione:");
+        cantina.scaricaPaccoGiuntoADestinazione();
+
+        System.out.println("\n trasloco...");
+        cantina.effettuaTrasloco();
+
+        System.out.println("\nContenuto della coda dopo il trasloco:");
         cantina.stampaCoda();
 
-        System.out.println("\nStato finale della pila:");
+        System.out.println("\nContenuto della pila dopo il trasloco:");
         cantina.stampaPila();
     }
 }
