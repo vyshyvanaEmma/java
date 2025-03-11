@@ -20,49 +20,63 @@ public class Cantina {
     }
 
 
-    private Nodo inserisciOrdinato(Nodo testa, Libro libro) {
-        Nodo nuovoN = new Nodo(libro);
-        if (testa == null || ((Libro) libro).getPeso() > ((Libro) testa.getInfo()).getPeso()) {
-            nuovoN.setNext(testa);
-            return nuovoN;
+       private Nodo ordinaPeso(Nodo testa) {
+        if (testa == null || testa.getNext() == null) {
+            return testa;
         }
-
-        Nodo corrente = testa;
-        while (corrente.getNext() != null && ((Libro) corrente.getNext().getInfo()).getPeso() >= libro.getPeso()) {
-            corrente = corrente.getNext();
-        }
-
-        nuovoN.setNext(corrente.getNext());
-        corrente.setNext(nuovoN);
+        boolean change;
+        do {
+            change = false;
+            Nodo corrente = testa;
+            while (corrente != null && corrente.getNext() != null) {
+                Libro l1 = (Libro) corrente.getInfo();
+                Libro l2 = (Libro) corrente.getNext().getInfo();
+                if (l1.getPeso() > l2.getPeso()) {
+                    Prodotto temp = corrente.getInfo();
+                    corrente.setInfo(corrente.getNext().getInfo());
+                    corrente.getNext().setInfo(temp);
+                    change = true;
+                }
+            }
+        } while (change);
         return testa;
     }
 
-    public boolean riempiPaccoLibri() {
-        if (coda.isEmpty()) {
-            return false;
-        }
+    public void riempiPaccoLibri() {
         double pesoTot = 0;
-        boolean libroAggiunto = false;
-        Nodo libriOrdinati = null;
-        while (!coda.isEmpty()) {
-            Prodotto prodotto = coda.estrai();
-            if (prodotto instanceof Libro) {
-                Libro libro = (Libro) prodotto;
-                libriOrdinati = inserisciOrdinato(libriOrdinati, libro);
-            }
 
+        if (coda.isEmpty()) {
+            System.out.println("La coda è vuota");
+            return;
         }
-        Nodo corrente = libriOrdinati;
-        while (corrente != null && pesoTot <= 10) {
-            Libro libro = (Libro) corrente.getInfo();
-            if (libro.getPeso() + pesoTot <= 10) {
-                pila.push(libro);
-                pesoTot += libro.getPeso();
-                libroAggiunto = true;
+
+        Nodo testaL = null;
+
+        while (!coda.isEmpty()) {
+            Prodotto p = coda.estrai();
+            if (p instanceof Libro) {
+                Nodo nuovoNodo = new Nodo(p);
+                nuovoNodo.setNext(testaL);
+                testaL = nuovoNodo;
+            } else {
+                System.out.println("Rimuovo il prodotto non libro: " + p);
+            }
+        }
+
+        testaL = ordinaPeso(testaL);
+
+        Nodo corrente = testaL;
+        while (corrente != null) {
+            Libro l = (Libro) corrente.getInfo();
+            if ((l.getPeso() + pesoTot) <= 10) {
+                pila.push(l);
+                pesoTot += l.getPeso();
+                System.out.println("Aggiunto libro: " + l);
+            } else {
+                System.out.println("Peso limite superato con il libro: " + l);
             }
             corrente = corrente.getNext();
         }
-        return libroAggiunto;
     }
 
     public void scaricaPaccoGiuntoADestinazione() {
