@@ -26,15 +26,15 @@ public class Collezione {
             precedente = corrente;
             corrente = corrente.getNext();
         }
-
+        //inserimento in testa
         if (precedente == null) {
-            n.setNext(testa);
+            n.setNext(testa);            
             testa = n;
-        } else if (corrente == null) {
-            precedente.setNext(n);
-        } else {
-            n.setNext(corrente);
-            precedente.setNext(n);
+        } else if (corrente == null) {  //inserimento in coda
+            precedente.setNext(n);       //collega l'ultimo al nuovo
+        } else {                        //inserimento in mezzo
+            n.setNext(corrente);        //collega nuovo al successivo
+            precedente.setNext(n);    //collega precedente al nuovo
         }
 
         return true;
