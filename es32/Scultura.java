@@ -1,25 +1,56 @@
 package es32;
 
-class Scultura extends OperaDArte {
-                private double base;
-                private double altezza;
-                private double profondita;
-            
-                public Scultura(String titolo, String nomeArtista, String cognomeArtista, double valore, double base, double altezza, double profondita) {
-                    super(titolo, nomeArtista, cognomeArtista, valore);
-                    this.base = base;
-                    this.altezza = altezza;
-                    this.profondita = profondita;
-                }
-            
-                @Override
-                public double getIngombro() {
-                    return base * altezza * profondita;  
-                }
-            
-                @Override
-                public String toString() {
-                    return super.toString() + ", Tipo: Scultura, Base: " + base + ", Altezza: " + altezza + ", Profondità: " + profondita;
-                }
-            }
-            
+public class Scultura extends OperaArte {
+    private double peso;
+    private double base, altezza, profondita;
+
+    public Scultura(String titolo, double valoreOpera, Artista artista, double peso, double base, double altezza,
+            double profondita) {
+        super(titolo, valoreOpera, artista);
+        this.peso = peso;
+        this.base = base;
+        this.altezza = altezza;
+        this.profondita = profondita;
+    }
+
+    public double ingombro() {
+        return altezza * base;
+    }
+
+    public double superficie() {
+        return 2 * (base * altezza + base * profondita + altezza * profondita);
+    }
+
+    public double getPeso() {
+        return peso;
+    }
+
+    public void setPeso(double peso) {
+        this.peso = peso;
+    }
+
+    public double getBase() {
+        return base;
+    }
+
+    public void setBase(double base) {
+        this.base = base;
+    }
+
+    public double getAltezza() {
+        return altezza;
+    }
+
+    public void setAltezza(double altezza) {
+        this.altezza = altezza;
+    }
+
+    public double getProfondita() {
+        return profondita;
+    }
+
+    public void setProfondita(double profondita) {
+        this.profondita = profondita;
+    }
+
+}

@@ -1,145 +1,227 @@
 package es32;
 
-class Collezione{
-                private Nodo head;
-                private String nome;
-                private String luogo;
+public class Collezione {
+    private String nome, luogo;
+    private Nodo testa;
 
+    public Collezione(String nome, String luogo) {
+        this.nome = nome;
+        this.luogo = luogo;
+        testa = null;
+    }
 
-                public Collezione(String nome, String luogo) {
-                    this.nome = nome;
-                    this.luogo = luogo;
-                    this.head = null;
-                }
-            
-                public void aggiungiOpera(OperaDArte opera) {
-                    Nodo nuovoNodo = new Nodo(opera);
-                    if (head == null || head.opera.cognomeArtista.compareTo(opera.cognomeArtista) > 0) {
-                        nuovoNodo.next = head;
-                        head = nuovoNodo;
-                    } else {
-                        Nodo current = head;
-                        while (current.next != null && current.next.opera.cognomeArtista.compareTo(opera.cognomeArtista) <= 0) {
-                            current = current.next;
-                        }
-                        nuovoNodo.next = current.next;
-                        current.next = nuovoNodo;
-                    }
-                }
-            
-                public void rimuoviOpera(String cognomeArtista, String nomeArtista) {
-                    Nodo current = head;
-                    Nodo previous = null;
-            
-                    while (current != null) {
-                        if ((current.opera.cognomeArtista.equals(cognomeArtista) && current.opera.nomeArtista.equals(nomeArtista)) ||
-                            (current.opera.cognomeArtista.equals(cognomeArtista) && nomeArtista == null)) {
-                            if (previous == null) {
-                                head = current.next;
-                            } else {
-                                previous.next = current.next;
-                            }
-                            return;
-                        }
-                        previous = current;
-                        current = current.next;
-                    }
-                }
-            
-                public String artistaOperaPiuCostosa() {
-                    if (head == null) return null;
-                    Nodo current = head;
-                    OperaDArte operaPiuCostosa = head.opera;
-                    while (current != null) {
-                        if (current.opera.getValore() > operaPiuCostosa.getValore()) {
-                            operaPiuCostosa = current.opera;
-                        }
-                        current = current.next;
-                    }
-                    return operaPiuCostosa.nomeArtista + " " + operaPiuCostosa.cognomeArtista;
-                }
-            
-                public int countQuadri() {
-                    int count = 0;
-                    Nodo current = head;
-                    while (current != null) {
-                        if (current.opera instanceof Quadro) {
-                            count++;
-                        }
-                        current = current.next;
-                    }
-                    return count;
-                }
-            
-                public int countSculture() {
-                    int count = 0;
-                    Nodo current = head;
-                    while (current != null) {
-                        if (current.opera instanceof Scultura) {
-                            count++;
-                        }
-                        current = current.next;
-                    }
-                    return count;
-                }
-            
-                public double valoreTotale() {
-                    double totalValue = 0;
-                    Nodo current = head;
-                    while (current != null) {
-                        totalValue += current.opera.getValore();
-                        current = current.next;
-                    }
-                    return totalValue;
-                }
-            
-                public double valoreTotalePerTipo(String tipo) {
-                                double totalValue = 0;
-                                Nodo current = head;   
-                                while (current != null) {
-                                    if (tipo.equals("Quadro") && current.opera instanceof Quadro) {
-                                        totalValue += current.opera.getValore();  // Aggiungi il valore dell'opera
-                                    } else if (tipo.equals("Scultura") && current.opera instanceof Scultura) {
-                                        totalValue += current.opera.getValore();  // Aggiungi il valore dell'opera
-                                    }
-                                    current = current.next;  
-                                }
-                                return totalValue;  
-                            }
-                            
-            
-                public void stampaElenco() {
-                    Nodo current = head;
-                    while (current != null) {
-                        System.out.println(current.opera.toString());
-                        current = current.next;
-                    }
-                }
-            
-                public void opereConValoreMaggioreDi(double valore) {
-                    Nodo current = head;
-                    while (current != null) {
-                        if (current.opera.getValore() > valore) {
-                            System.out.println(current.opera.toString());
-                        }
-                        current = current.next;
-                    }
-                }
-                            
-                public String getNome() {
-                                return nome;
-                }
+    public boolean aggiuntaOrdineCognome(OperaArte opera) {
+        Nodo n = new Nodo(opera);
 
-                public void setNome(String nome) {
-                                this.nome = nome;
-                }
+        if (testa == null) {
+            testa = n;
+            return true;
+        }
 
-                public String getLuogo() {
-                                return luogo;
-                }
+        Nodo corrente = testa;
+        Nodo precedente = null;
 
-                public void setLuogo(String luogo) {
-                                this.luogo = luogo;
+        while (corrente != null && corrente.getOpera().getArtista().getCognomeArtista()
+                .compareTo(n.getOpera().getArtista().getCognomeArtista()) <= 0) {
+            precedente = corrente;
+            corrente = corrente.getNext();
+        }
+
+        if (precedente == null) {
+            n.setNext(testa);
+            testa = n;
+        } else if (corrente == null) {
+            precedente.setNext(n);
+        } else {
+            n.setNext(corrente);
+            precedente.setNext(n);
+        }
+
+        return true;
+    }
+
+    public boolean rimuovereOpera(String nome, String cognome) {
+        if (testa == null) {
+            return false;
+        }
+        Nodo corrente = testa;
+        Nodo precedente = null;
+        while (corrente != null) {
+            if (corrente.getOpera().getArtista().getNomeArtista().equals(nome)
+                    && corrente.getOpera().getArtista().getCognomeArtista().equals(cognome)) {
+                if (precedente == null) {
+                    testa = corrente.getNext();
+                } else {
+                    precedente.setNext(corrente.getNext());
                 }
+                return true;
             }
-            
+
+            precedente = corrente;
+            corrente = corrente.getNext();
+
+        }
+        return false;
+
+    }
+
+    public String nomeArtistaOperaCostosa() {
+        if (testa == null) {
+            return null;
+        }
+        Nodo corrente = testa;
+        String nome = corrente.getOpera().getArtista().getNomeArtista();
+        double max = corrente.getOpera().getValoreOpera();
+        while (corrente != null) {
+            if (corrente.getOpera().getValoreOpera() > max) {
+                max = corrente.getOpera().getValoreOpera();
+                nome = corrente.getOpera().getArtista().getNomeArtista();
+            }
+            corrente = corrente.getNext();
+        }
+        return nome;
+    }
+
+    private int quantitaOpere(Class<?> tipo) {
+        if (testa == null) {
+            return 0;
+        }
+
+        int conta = 0;
+        Nodo corrente = testa;
+
+        while (corrente != null) {
+            if (tipo.isInstance(corrente.getOpera())) {
+                conta++;
+            }
+            corrente = corrente.getNext();
+        }
+
+        return conta;
+    }
+
+    public int quantitaSculture() {
+        return quantitaOpere(Scultura.class);
+        /*
+         * if(testa == null){
+         * return -1;
+         * }
+         * int conta = 0;
+         * Nodo corrente = testa;
+         * while(corrente != null){
+         * OperaArte o = corrente.getOpera();
+         * if(o instanceof Scultura){
+         * conta ++;
+         * }
+         * 
+         * corrente = corrente.getNext();
+         * }
+         * return conta;
+         */
+    }
+
+    public int quantitaQuadri() {
+        return quantitaOpere(Quadro.class);
+        /*
+         * if(testa == null){
+         * return -1;
+         * }
+         * int conta = 0;
+         * Nodo corrente = testa;
+         * while(corrente != null){
+         * OperaArte o = corrente.getOpera();
+         * if(o instanceof Quadro){
+         * conta ++;
+         * }
+         * 
+         * corrente = corrente.getNext();
+         * }
+         * return conta;
+         */
+    }
+
+    public double totaleCollezione(){
+        double tot = 0;
+        if(testa == null){
+            return tot;
+        }
+        Nodo corrente = testa;
+        while(corrente != null){
+            tot += corrente.getOpera().getValoreOpera();
+            corrente = corrente.getNext();
+        }
+        return tot;
+    }
+
+    public double totaleQuadri(){
+        return totaleTipOpere(Quadro.class);
+    }
+    public double totaleSculture(){
+        return totaleTipOpere(Scultura.class);
+    }
+
+    private double totaleTipOpere(Class<?> tipo){
+        if(testa == null){
+            return 0;
+        }
+        double tot = 0;
+        Nodo corrente = testa;
+        while(corrente != null){
+            if(tipo.isInstance(corrente.getOpera())){
+                tot += corrente.getOpera().getValoreOpera();
+            }
+            corrente = corrente.getNext();
+        }
+        return tot;
+    }
+
+    public Collezione listaOpereMaggioreStabilito(double val){
+        Collezione collezione = new Collezione("Nuova", "qui");
+        if(testa == null){
+            return collezione;
+        }
+        Nodo corrente = testa;
+        while(corrente != null){
+            if(corrente.getOpera().getValoreOpera() > val){
+                collezione.aggiuntaOrdineCognome(corrente.getOpera());
+            }
+            corrente = corrente.getNext();
+        }
+        return collezione;
+    }
+
+    public void stampa() {
+        if (testa == null) {
+            System.out.println("La collezione e' vuota:");
+        }
+        Nodo corrente = testa;
+        while (corrente != null) {
+            System.out.println("Titolo: " + corrente.getOpera().getTitolo() + "\n");
+            corrente = corrente.getNext();
+        }
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getLuogo() {
+        return luogo;
+    }
+
+    public void setLuogo(String luogo) {
+        this.luogo = luogo;
+    }
+
+    public Nodo getTesta() {
+        return testa;
+    }
+
+    public void setTesta(Nodo testa) {
+        this.testa = testa;
+    }
+}

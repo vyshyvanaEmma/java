@@ -15,7 +15,7 @@ public class Cantina {
     public void stampaCoda(){
         coda.stampaCoda();
     }
-    public void stampaPila(){
+    public void stampaPila
         pila.stampaPila();
     }
 
