@@ -24,8 +24,8 @@ public class ButtonListener implements ActionListener {
 
     }
 
-    public void cancella(){
+    /*public void cancella(){
         inputCorrente.setLength(0);
         display.setText("0");
-    }
+    }*/
 }
