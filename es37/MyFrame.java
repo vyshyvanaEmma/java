@@ -18,7 +18,7 @@ public class MyFrame extends JFrame {
         display = new JTextField("0");
         display.setEditable(false);
 
-        ButtonListener btnListener = new ButtonListener(display);
+        btnListener = new ButtonListener(display);
 
         JMenuBar menuBar = new JMenuBar();
 
@@ -77,25 +77,40 @@ public class MyFrame extends JFrame {
         add(schermo, BorderLayout.NORTH);
 
         JPanel pannello = new JPanel();
-        pannello.setLayout(new GridLayout(4, 4, 5, 5));
+        pannello.setLayout(new GridLayout(5, 4, 5, 5));
 
         String[] bottoni = {
-                "7", "8", "9", "/",
-                "4", "5", "6", "*",
-                "1", "2", "3", "-",
-                "0", ".", "=", "+"
+                "%", "CE", "C", "⌫",
+                "7", "8", "9", "*",
+                "4", "5", "6", "-",
+                "1", "2", "3", "+",
+                "0", ".", "C", "="
         };
 
-        ButtonListener listener = new ButtonListener(schermo);
+        for (String testo : bottoni) {
+            JButton btn = new JButton(testo);
 
-        for (String text : bottoni) {
-            JButton btn = new JButton(text);
-            btn.addActionListener(listener);
+            if ("C".equals(testo)) {
+                btn.addActionListener(e -> btnListener.resetta());
+            } else if ("⌫".equals(testo)) {
+                btn.addActionListener(e -> {
+                    String corrente = display.getText();
+                    if (corrente.length() > 1) {
+                        display.setText(corrente.substring(0, corrente.length() - 1));
+                    }
+                });
+
+            } else {
+                btn.addActionListener(btnListener);
+            }
             pannello.add(btn);
+
+            btn.addActionListener(btnListener);
+
+            add(pannello, BorderLayout.CENTER);
+            setVisible(true);
 
         }
 
-        add(pannello, BorderLayout.CENTER);
-        setVisible(true);
     }
 }
