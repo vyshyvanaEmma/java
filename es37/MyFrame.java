@@ -7,6 +7,7 @@ public class MyFrame extends JFrame {
 
     private JTextField display;
     private ButtonListener btnListener;
+    private JTextArea storiaArea;
 
     public MyFrame() {
 
@@ -17,14 +18,24 @@ public class MyFrame extends JFrame {
 
         display = new JTextField("0");
         display.setEditable(false);
+        display.setFont(new Font("Arial", Font.BOLD, 24));
+        display.setHorizontalAlignment(JTextField.RIGHT);
+        display.setPreferredSize(new Dimension(0, 50));
+        add(display, BorderLayout.NORTH); 
 
-        btnListener = new ButtonListener(display);
+        storiaArea = new JTextArea(8, 30); 
+        storiaArea.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(storiaArea);
+        scrollPane.setBorder(BorderFactory.createTitledBorder("Storia"));
+        add(scrollPane, BorderLayout.SOUTH);
+
+        btnListener = new ButtonListener(display, storiaArea); 
 
         JMenuBar menuBar = new JMenuBar();
 
         JMenu calcMenu = new JMenu("Calcolatrice");
         JMenuItem standartItem = new JMenuItem("Standart");
-        JMenuItem scienceItem = new JMenuItem("Sscientifica");
+        JMenuItem scienceItem = new JMenuItem("Scientifica");
         JMenuItem rappItem = new JMenuItem("Rappresentazione grafica");
         JMenuItem progItem = new JMenuItem("Programmatore");
         JMenuItem dataItem = new JMenuItem("Calcolo della data");
@@ -72,23 +83,20 @@ public class MyFrame extends JFrame {
 
         setJMenuBar(menuBar);
 
-        JTextField schermo = new JTextField();
-        schermo.setEditable(false);
-        add(schermo, BorderLayout.NORTH);
-
         JPanel pannello = new JPanel();
         pannello.setLayout(new GridLayout(5, 4, 5, 5));
 
         String[] bottoni = {
-                "%", "CE", "C", "⌫",
-                "7", "8", "9", "*",
-                "4", "5", "6", "-",
-                "1", "2", "3", "+",
-                "0", ".", "C", "="
+            "%", "CE", "C", "⌫",
+            "7", "8", "9", "/",
+            "4", "5", "6", "*",
+            "1", "2", "3", "-",
+            "0", ".", "=", "+"
         };
-
+        
         for (String testo : bottoni) {
             JButton btn = new JButton(testo);
+            btn.setFont(new Font("Arial", Font.BOLD, 18));
 
             if ("C".equals(testo)) {
                 btn.addActionListener(e -> btnListener.resetta());
@@ -97,20 +105,18 @@ public class MyFrame extends JFrame {
                     String corrente = display.getText();
                     if (corrente.length() > 1) {
                         display.setText(corrente.substring(0, corrente.length() - 1));
+                    } else {
+                        display.setText("0");
                     }
                 });
-
             } else {
                 btn.addActionListener(btnListener);
             }
+
             pannello.add(btn);
-
-            btn.addActionListener(btnListener);
-
-            add(pannello, BorderLayout.CENTER);
-            setVisible(true);
-
         }
 
+        add(pannello, BorderLayout.CENTER);
+        setVisible(true);
     }
 }
