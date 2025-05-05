@@ -28,10 +28,14 @@ public class MySliders implements ChangeListener {
 
         slider.setPaintLabels(true);
         slider.setFont(new Font("MV Boli", Font.PLAIN, 15));
+        label.setFont(new Font("MV Boli", Font.PLAIN, 25));
 
         slider.setOrientation(SwingConstants.VERTICAL);
-        slider.setOrientation(SwingConstants.HORIZONTAL);
+        //slider.setOrientation(SwingConstants.HORIZONTAL);
 
+        label.setText("C = " + slider.getValue());
+
+        slider.addChangeListener(this);
 
         panel.add(slider);
         panel.add(label);
@@ -42,7 +46,7 @@ public class MySliders implements ChangeListener {
 
     @Override
     public void stateChanged(ChangeEvent e) {
-
+        label.setText("C = " + slider.getValue());
     }
 
 }

@@ -1,7 +1,7 @@
 package javaGui;
 
-public class Sliders {
+public class ProgressBar {
     public static void main(String[] args) {
-        new MySliders();
+        new MyProgressBar();
     }
 }
