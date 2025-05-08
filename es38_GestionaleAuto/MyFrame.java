@@ -19,15 +19,12 @@ public class MyFrame extends JFrame implements ActionListener {
     JButton conferma;
     JButton annula;
     JLabel labelCognome;
-    JLabel labelNome;
-    JLabel labelTel;
-    JLabel labelCittaPart;
-    JLabel labelCittaDest;
-    JLabel labelData;
+    JLabel labelCodFisc;
+    JLabel labelTarga;
 
-    private JTextField campoCognome, campoNome, campoTel, campoCittaPart, campoCittaDest, campoData;
+    private JTextField campoCognome, campoCodFisc, campoTarga;
     private JLabel messaggioLabel;
-    private ArrayList<Prenotazione> prenotazioni = new ArrayList<>();;
+    private ArrayList<Proprietario> proprietari = new ArrayList<>();;
     private int numPrenotazioni = 0;
 
     MyFrame() {
@@ -39,35 +36,20 @@ public class MyFrame extends JFrame implements ActionListener {
 
         campoCognome = new JTextField();
         // campoCognome.setBounds(200, 50, 200, 30);
-        campoNome = new JTextField();
+        campoCodFisc = new JTextField();
         // campoNome.setBounds(200, 90, 200, 30);
-        campoTel = new JTextField();
+        campoTarga = new JTextField();
         // campoTel.setBounds(200, 130, 200, 30);
-        campoCittaPart = new JTextField();
-        // campoCIttaPart.setBounds(200, 170, 200, 30);
-        campoCittaDest = new JTextField();
-        // campoCIttaDest.setBounds(200, 210, 200, 30);
-        campoData = new JTextField();
-        // campoData.setBounds(200, 250, 200, 30);
 
         labelCognome = new JLabel();
         labelCognome.setText("Cognome: ");
         // labelCognome.setBounds(50,50,100,30);
-        labelNome = new JLabel();
-        labelNome.setText("Nome: ");
+        labelCodFisc = new JLabel();
+        labelCodFisc.setText("Nome: ");
         // labelNome.setBounds(50,90,100,30);
-        labelTel = new JLabel();
-        labelTel.setText("Telefono: ");
+        labelTarga = new JLabel();
+        labelTarga.setText("Telefono: ");
         // labelTel.setBounds(50,130,100,30);
-        labelCittaPart = new JLabel();
-        labelCittaPart.setText("Citta' Partenza: ");
-        // labelCittaPart.setBounds(50,170,150,30);
-        labelCittaDest = new JLabel();
-        labelCittaDest.setText("Citta' Destinazione: ");
-        // labelCittaDest.setBounds(50,210,150,30);
-        labelData = new JLabel();
-        labelData.setText("Data: ");
-        // labelCittaDest.setBounds(50,250,100,30);
 
         JPanel panelButton = new JPanel();
         panelButton.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 0));
@@ -89,16 +71,10 @@ public class MyFrame extends JFrame implements ActionListener {
         this.add(messaggioLabel);
         this.add(labelCognome);
         this.add(campoCognome);
-        this.add(labelNome);
-        this.add(campoNome);
-        this.add(labelTel);
-        this.add(campoTel);
-        this.add(labelCittaPart);
-        this.add(campoCittaPart);
-        this.add(labelCittaDest);
-        this.add(campoCittaDest);
-        this.add(labelData);
-        this.add(campoData);
+        this.add(labelCodFisc);
+        this.add(campoCodFisc);
+        this.add(labelTarga);
+        this.add(campoTarga);
 
         panelButton.add(annula);
         panelButton.add(conferma);
@@ -112,50 +88,31 @@ public class MyFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == conferma) {
             if (campoCognome.getText().isEmpty() || 
-            campoNome.getText().isEmpty() || 
-            campoTel.getText().isEmpty() || 
-            campoCittaPart.getText().isEmpty() || 
-            campoCittaDest.getText().isEmpty() || 
-            campoData.getText().isEmpty()) {
+            campoCodFisc.getText().isEmpty() || 
+            campoTarga.getText().isEmpty()) {
             
             messaggioLabel.setForeground(Color.RED);
             messaggioLabel.setText("Compila tutti i campi!");
             return; 
         }
-            Prenotazione p = new Prenotazione(
+            Proprietario p = new Proprietario(
                     campoCognome.getText(),
-                    campoNome.getText(),
-                    campoTel.getText(),
-                    campoCittaPart.getText(),
-                    campoCittaDest.getText(),
-                    campoData.getText());
+                    campoCodFisc.getText(),
+                    campoTarga.getText());
 
-            prenotazioni.add(p);
+            proprietari.add(p);
             numPrenotazioni++;
-
-            int conta = 0;
-            for (int i = 0; i < numPrenotazioni; i++) {
-                if (prenotazioni.get(i).getData().equals(p.getData())) {
-                    conta++;
-                }
-            }
 
             messaggioLabel.setForeground(Color.GREEN);
             messaggioLabel.setText("Prenotazione registrata, con numero: " + p.getData() + ": " + conta);
             labelCognome.setText("");
-            labelNome.setText("");
-            labelTel.setText("");
-            labelCittaPart.setText("");
-            labelCittaDest.setText("");
-            labelData.setText("");
+            labelCodFisc.setText("");
+            labelTarga.setText("");
         }
         if (e.getSource() == annula) {
             campoCognome.setText("");
-            campoNome.setText("");
-            campoTel.setText("");
-            campoCittaPart.setText("");
-            campoCittaDest.setText("");
-            campoData.setText("");
+            campoCodFisc.setText("");
+            campoTarga.setText("");
 
             messaggioLabel.setForeground(Color.DARK_GRAY);
             messaggioLabel.setText("Prenotazione annulata");
