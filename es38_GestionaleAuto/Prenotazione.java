@@ -1,4 +1,4 @@
-package es37Viaggio;
+package es38_GestionaleAuto;
 
 public class Prenotazione {
     private String cognome;
