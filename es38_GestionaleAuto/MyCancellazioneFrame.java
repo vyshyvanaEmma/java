@@ -1,6 +1,7 @@
 package es38_GestionaleAuto;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,26 +18,38 @@ public class MyCancellazioneFrame extends JFrame implements ActionListener{
     JTextField campoCodFisc;
     JLabel messaggioResult;
     
-    private ArrayList<Proprietario> proprietari = new ArrayList<>();;
+    Agenzia agenzia;
 
-    MyCancellazioneFrame(){
+    MyCancellazioneFrame(Agenzia agenzia){
+
+        this.agenzia = new Agenzia();
+
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setLayout(new GridLayout(8, 2, 10, 10));
+        this.setLayout(new GridLayout(4, 1, 10, 10));
         this.setSize(500, 500);
-        this.setTitle("Prenota il biglietto");
-        this.getContentPane().setBackground(Color.LIGHT_GRAY);
+        this.setTitle("Cancellazione proprietario");
+        this.getContentPane().setBackground(new Color(255, 240, 245));
 
-        JLabel label = new JLabel();
-        label.setText("Inserisci il codice fiscale del proprietario");
+        JLabel label = new JLabel("Inserisci il codice fiscale del proprietario:", JLabel.CENTER);
+        label.setFont(new Font("Arial", Font.BOLD, 14));
 
         campoCodFisc = new JTextField();
+        campoCodFisc.setFont(new Font("Courier New", Font.PLAIN, 14));
+        campoCodFisc.setHorizontalAlignment(JTextField.CENTER);
 
         cancella = new JButton();
+        cancella.setFont(new Font("Verdana", Font.BOLD, 12));
         cancella.addActionListener(this);
 
         messaggioResult = new JLabel(" ");
+        messaggioResult.setFont(new Font("Arial", Font.ITALIC, 12));
 
+        
+        this.add(label);
+        this.add(campoCodFisc);
         this.add(cancella);
+        this.add(messaggioResult);
+
         this.setVisible(true);
 
     }
@@ -46,31 +59,18 @@ public class MyCancellazioneFrame extends JFrame implements ActionListener{
         if(e.getSource() == cancella){
             if(campoCodFisc.getText().isEmpty()){
                 messaggioResult.setForeground(Color.RED);
-                messaggioResult.setText("Compila il campo!");
+                messaggioResult.setText("Inserisci un codice fiscale!");
                 return; 
             }
 
-            boolean trovato = false;
-
-            for(int i = 0; i < proprietari.size(); i++){
-                Proprietario p = proprietari.get(i);
-
-                if(p.getCodFisc().equals(campoCodFisc.getText())){
-                    trovato = true;
-                    proprietari.remove(i);
-                    messaggioResult.setForeground(Color.GREEN);
-                    messaggioResult.setText("Il proprietario e' stato cancellato cpn successo");
-                    campoCodFisc.setText("");
-
-                }
-            }
-
-            if(trovato == false){
+            if (agenzia.rimuoviProprietario(campoCodFisc.getText())) {
+                messaggioResult.setForeground(new Color(0, 100, 0));
+                messaggioResult.setText("Proprietario rimosso con successo!");
+                campoCodFisc.setText("");
+            } else {
                 messaggioResult.setForeground(Color.RED);
-                messaggioResult.setText("Il proprietario con questo codice fiscale non esiste");
-                return; 
+                messaggioResult.setText("Nessun proprietario trovato con questo codice fiscale!");
             }
-
         }
     }
 }
