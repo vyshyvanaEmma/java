@@ -1,7 +1,7 @@
 package es38_GestionaleAuto;
 
-public class FormPrenotazione{
+public class Main{
     public static void main(String[] args) {
-        new MyFrame();
+        new MyMainFrame();
     }
 }

@@ -32,7 +32,7 @@ public class MyFrame extends JFrame implements ActionListener {
         this.setLayout(new GridLayout(8, 2, 10, 10));
         this.setSize(500, 500);
         this.setTitle("Prenota il biglietto");
-        this.getContentPane().setBackground(Color.MAGENTA);
+        this.getContentPane().setBackground(Color.LIGHT_GRAY);
 
         campoCognome = new JTextField();
         // campoCognome.setBounds(200, 50, 200, 30);
@@ -104,7 +104,7 @@ public class MyFrame extends JFrame implements ActionListener {
             numPrenotazioni++;
 
             messaggioLabel.setForeground(Color.GREEN);
-            messaggioLabel.setText("Prenotazione registrata, con numero: " + p.getData() + ": " + conta);
+            messaggioLabel.setText("Prenotazione registrata");
             labelCognome.setText("");
             labelCodFisc.setText("");
             labelTarga.setText("");

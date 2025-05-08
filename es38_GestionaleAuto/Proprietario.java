@@ -1,29 +1,41 @@
 package es38_GestionaleAuto;
 
-public class Prenotazione {
-    private String cognome;
-    private String nome;
-    private String telefono;
-    private String cittaPartenza;
-    private String cittaDestinazione;
-    private String data;
+public class Proprietario {
+    private String cognome, codFisc, targa;
 
-    public Prenotazione(String cognome, String nome, String telefono, 
-                       String cittaPartenza, String cittaDestinazione, String data) {
+    public Proprietario(String cognome, String codFisc, String targa) {
         this.cognome = cognome;
-        this.nome = nome;
-        this.telefono = telefono;
-        this.cittaPartenza = cittaPartenza;
-        this.cittaDestinazione = cittaDestinazione;
-        this.data = data;
+        this.codFisc = codFisc;
+        this.targa = targa;
     }
 
-    public String getData() {
-        return data;
+    public String getCognome() {
+        return cognome;
+    }
+
+    public void setCognome(String cognome) {
+        this.cognome = cognome;
+    }
+
+    public String getCodFisc() {
+        return codFisc;
+    }
+
+    public void setCodFisc(String codFisc) {
+        this.codFisc = codFisc;
+    }
+
+    public String getTarga() {
+        return targa;
+    }
+
+    public void setTarga(String targa) {
+        this.targa = targa;
     }
 
     @Override
     public String toString() {
-        return cognome + " " + nome + " - " + cittaPartenza + " → " + cittaDestinazione + " (" + data + ")";
+        return "Proprietario - cognome:" + cognome + ", codice fiscale: " + codFisc + ", targa: " + targa + "/n";
     }
+
 }
