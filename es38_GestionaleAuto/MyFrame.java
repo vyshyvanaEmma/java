@@ -25,7 +25,6 @@ public class MyFrame extends JFrame implements ActionListener {
     private JTextField campoCognome, campoCodFisc, campoTarga;
     private JLabel messaggioLabel;
     private ArrayList<Proprietario> proprietari = new ArrayList<>();;
-    private int numPrenotazioni = 0;
 
     MyFrame() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -101,7 +100,6 @@ public class MyFrame extends JFrame implements ActionListener {
                     campoTarga.getText());
 
             proprietari.add(p);
-            numPrenotazioni++;
 
             messaggioLabel.setForeground(Color.GREEN);
             messaggioLabel.setText("Prenotazione registrata");

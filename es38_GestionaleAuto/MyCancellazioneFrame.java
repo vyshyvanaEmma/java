@@ -58,6 +58,10 @@ public class MyCancellazioneFrame extends JFrame implements ActionListener{
                 if(p.getCodFisc().equals(campoCodFisc.getText())){
                     trovato = true;
                     proprietari.remove(i);
+                    messaggioResult.setForeground(Color.GREEN);
+                    messaggioResult.setText("Il proprietario e' stato cancellato cpn successo");
+                    campoCodFisc.setText("");
+
                 }
             }
 
@@ -66,6 +70,7 @@ public class MyCancellazioneFrame extends JFrame implements ActionListener{
                 messaggioResult.setText("Il proprietario con questo codice fiscale non esiste");
                 return; 
             }
+
         }
     }
 }
