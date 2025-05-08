@@ -37,28 +37,24 @@ public class MyFrame extends JFrame implements ActionListener {
         this.getContentPane().setBackground(new Color(240, 248, 255));
 
         Font fontLabel = new Font("Arial", Font.BOLD, 14);
-        Font fontField = new Font("Courier New", Font.PLAIN, 14);
-
+        
         campoCognome = new JTextField();
-        // campoCognome.setBounds(200, 50, 200, 30);
         campoCodFisc = new JTextField();
-        // campoNome.setBounds(200, 90, 200, 30);
         campoTarga = new JTextField();
-        // campoTel.setBounds(200, 130, 200, 30);
+ 
 
         labelCognome = new JLabel();
         labelCognome.setText("Cognome: ");
         labelCognome.setFont(fontLabel);
-        // labelCognome.setBounds(50,50,100,30);
+
         labelCodFisc = new JLabel();
         labelCodFisc.setText("Codice Fiscale: ");
         labelCodFisc.setFont(fontLabel);
-        // labelNome.setBounds(50,90,100,30);
+
         labelTarga = new JLabel();
         labelTarga.setText("Targa: ");
         labelTarga.setFont(fontLabel);
 
-        // labelTel.setBounds(50,130,100,30);
 
         JPanel panelButton = new JPanel();
         panelButton.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 10));
@@ -66,11 +62,9 @@ public class MyFrame extends JFrame implements ActionListener {
         conferma = new JButton("Conferma");
         conferma.setFont(new Font("Verdana", Font.BOLD, 12));
         conferma.addActionListener(this);
-        // conferma.setBounds(150, 350, 100, 30);
         annula = new JButton("Annulla");
         annula.setFont(new Font("Verdana", Font.BOLD, 12));
         annula.addActionListener(this);
-        // annula.setBounds(300, 350, 100, 30);
 
         messaggioLabel = new JLabel(" ", JLabel.CENTER);
         messaggioLabel.setFont(new Font("Arial", Font.ITALIC, 12));

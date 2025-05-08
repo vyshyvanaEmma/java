@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -37,7 +36,7 @@ public class MyCancellazioneFrame extends JFrame implements ActionListener{
         campoCodFisc.setFont(new Font("Courier New", Font.PLAIN, 14));
         campoCodFisc.setHorizontalAlignment(JTextField.CENTER);
 
-        cancella = new JButton();
+        cancella = new JButton("CANCELLA");
         cancella.setFont(new Font("Verdana", Font.BOLD, 12));
         cancella.addActionListener(this);
 
