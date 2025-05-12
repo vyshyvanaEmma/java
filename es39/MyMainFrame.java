@@ -1,50 +1,62 @@
 package es39;
 
-import java.awt.Color;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
-public class MyMainFrame extends JFrame implements ActionListener{
+public class MyMainFrame extends JFrame implements ActionListener {
     
-    JButton utente, amministrazione;
-    Amministrazione amministranzioneP;
-
-    MyMainFrame(){
-
-        amministranzioneP = new Amministrazione();
-
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setLayout(new GridLayout(2, 2));
-        this.setSize(500, 500);
-        this.setTitle("Recenzione");
-        this.getContentPane().setBackground(new Color(240, 248, 255));
+    private JButton utenteBtn, adminBtn;
+    private Amministrazione amministrazione;
+    
+    public MyMainFrame() {
+        amministrazione = new Amministrazione();
         
-        utente = new JButton("UTENTE");
-        amministrazione = new JButton("AMIMINISTRAZIONE");
-
-        utente.addActionListener(this);
-        amministrazione.addActionListener(this);
-
-        this.add(utente);
-        this.add(amministrazione);
-        this.setVisible(true);
+        setTitle("Valutazioni Museo");
+        setSize(400, 300);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        
+        // Pannello principale
+        JPanel mainPanel = new JPanel(new BorderLayout(20, 20));
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
+        
+        // Titolo
+        JLabel title = new JLabel("Sistema Valutazioni", JLabel.CENTER);
+        title.setFont(new Font("Arial", Font.BOLD, 20));
+        mainPanel.add(title, BorderLayout.NORTH);
+        
+        // Pannello pulsanti
+        JPanel buttonPanel = new JPanel(new GridLayout(2, 1, 10, 10));
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(20, 50, 20, 50));
+        
+        utenteBtn = createButton("Modalità Utente");
+        adminBtn = createButton("Modalità Amministratore");
+        
+        buttonPanel.add(utenteBtn);
+        buttonPanel.add(adminBtn);
+        
+        mainPanel.add(buttonPanel, BorderLayout.CENTER);
+        
+        add(mainPanel);
+    }
+    
+    private JButton createButton(String text) {
+        JButton btn = new JButton(text);
+        btn.setFont(new Font("Arial", Font.PLAIN, 14));
+        btn.setBackground(new Color(240, 240, 240));
+        btn.setFocusPainted(false);
+        btn.addActionListener(this);
+        return btn;
     }
 
-       @Override
+    @Override
     public void actionPerformed(ActionEvent e) {
-        Amministrazione n = new Amministrazione();
-        if(e.getSource() == utente){
-            MyFrame am = new MyFrame(amministranzioneP);
-            n = am.getA();
-        }
-        if(e.getSource() == amministrazione){
-            new Risultati(n);
+        if (e.getSource() == utenteBtn) {
+            new MyFrame(amministrazione);
+        } else if (e.getSource() == adminBtn) {
+            new Risultati(amministrazione);
         }
     }
-
-
     
 }

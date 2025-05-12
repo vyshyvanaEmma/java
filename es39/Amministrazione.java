@@ -1,4 +1,5 @@
 package es39;
+
 import java.util.ArrayList;
 
 public class Amministrazione {
@@ -8,80 +9,69 @@ public class Amministrazione {
         this.voti = new ArrayList<>();
     }
 
-    public boolean aggiungiVoto(Voto v){
-        
+    public boolean aggiungiVoto(Voto v) {
         return voti.add(v);
     }
 
-    public int contaVotF(){
+    public int contaVotF() {
         int conta = 0;
-        for(int i = 0; i < voti.size(); i++){
-            Voto v = voti.get(i);
-            if(v.getSesso() == 'f'){
+        for(Voto v : voti) {
+            if(v.getSesso() == 'f') {
                 conta++;
             }
         }
         return conta;
     }
 
-    public int contaVotM(){
+    public int contaVotM() {
         int conta = 0;
-        for(int i = 0; i < voti.size(); i++){
-            Voto v = voti.get(i);
-            if(v.getSesso() == 'm'){
+        for(Voto v : voti) {
+            if(v.getSesso() == 'm') {
                 conta++;
             }
         }
         return conta;
     }
 
-    public int contaVotiMax(){
+    public int contaVotiMax() {
         int conta = 0;
-        for(int i = 0; i < voti.size(); i++){
-            Voto v = voti.get(i);
-            if(v.getNum() == 10){
+        for(Voto v : voti) {
+            if(v.getNum() == 9) { 
                 conta++;
             }
         }
         return conta;
     }
 
-    
-    public double mediaVotiF(){
-        double media = 0.0;
-        int somma = 0;
-        for(int i = 0; i < voti.size(); i++){
-            Voto v = voti.get(i);
-            somma += v.getNum();
+    public double mediaVotiF() {
+        double somma = 0;
+        int count = 0;
+        for(Voto v : voti) {
+            if(v.getSesso() == 'f') {
+                somma += v.getNum();
+                count++;
+            }
         }
-        if(contaVotF() == 0){
-            return 0;
-        }
-        media = somma / contaVotF();
-        return media;
+        return count == 0 ? 0 : somma / count;
     }
 
-    public double mediaVotiM(){
-        double media = 0.0;
-        int somma = 0;
-        for(int i = 0; i < voti.size(); i++){
-            Voto v = voti.get(i);
-            somma += v.getNum();
+    public double mediaVotiM() {
+        double somma = 0;
+        int count = 0;
+        for(Voto v : voti) {
+            if(v.getSesso() == 'm') {
+                somma += v.getNum();
+                count++;
+            }
         }
-        if(contaVotM() == 0){
-            return 0;
-        }
-        media = somma / contaVotM();
-        return media;
+        return count == 0 ? 0 : somma / count;
+    }
+
+    public void azzeraDati() {
+        voti.clear();
     }
 
     public ArrayList<Voto> getVoti() {
         return voti;
     }
-
-    public void setVoti(ArrayList<Voto> voti) {
-        this.voti = voti;
-    }
-
-
 }

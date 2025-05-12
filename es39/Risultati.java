@@ -1,48 +1,35 @@
 package es39;
 
-import java.awt.Color;
-import java.awt.GridLayout;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
+import javax.swing.*;
+import java.awt.*;
 
 public class Risultati extends JFrame {
-
-    JLabel labelNumMax, labelNumVotF, labelNumVotM, labelMediaM, labelMediaF;
-    JLabel riSlabelNumMax, riSlabelNumVotF, riSlabelNumVotM, rislabelMediaF, rislabelMediaM;
-
-    Risultati(Amministrazione amministrazione) {
-
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setLayout(new GridLayout(2, 5));
-        this.setSize(500, 500);
-        this.setTitle("Risultatii");
-        this.getContentPane().setBackground(new Color(240, 248, 255));
-
-        labelNumMax = new JLabel("Il numero dei voti massimi (10)");
-        riSlabelNumMax = new JLabel(" " + amministrazione.contaVotiMax());
-
-        labelNumVotF = new JLabel("Le valutazione immerse da F");
-        riSlabelNumVotF = new JLabel(" " + amministrazione.contaVotF());
-        labelNumVotM = new JLabel("Le valutazione immerse da M");
-        riSlabelNumVotF = new JLabel(" " + amministrazione.contaVotM());
-
-        labelMediaF = new JLabel("Media dei vori di f");
-        rislabelMediaF = new JLabel(" " + amministrazione.mediaVotiF());
-
-        labelMediaM = new JLabel("Media dei vori di m");
-        rislabelMediaM = new JLabel(" " + amministrazione.mediaVotiF());
-
-        this.add(labelNumMax);
-        this.add(riSlabelNumMax);
-        this.add(labelNumVotF);
-        this.add(riSlabelNumVotF);
-        this.add(labelNumVotM);
-        this.add(riSlabelNumVotF);
-        this.add(labelMediaF);
-        this.add(rislabelMediaF);
-        this.add(labelMediaM);
-        this.add(rislabelMediaM);
-
-        this.setVisible(true);
+    
+    public Risultati(Amministrazione amministrazione) {
+        setTitle("Risultati Valutazioni");
+        setSize(500, 300);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(null);
+        
+        JPanel mainPanel = new JPanel(new GridLayout(5, 2, 10, 10));
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        
+        addStat(mainPanel, "Voti massimi (9):", amministrazione.contaVotiMax() + "");
+        addStat(mainPanel, "Voti femmine:", amministrazione.contaVotF() + "");
+        addStat(mainPanel, "Voti maschi:", amministrazione.contaVotM() + "");
+        addStat(mainPanel, "Media femmine:", String.format("%.2f", amministrazione.mediaVotiF()));
+        addStat(mainPanel, "Media maschi:", String.format("%.2f", amministrazione.mediaVotiM()));
+        
+        add(mainPanel);
+        setVisible(true);
+    }
+    
+    private void addStat(JPanel panel, String label, String value) {
+        JLabel lbl = new JLabel(label);
+        JLabel val = new JLabel(value);
+        val.setHorizontalAlignment(JLabel.RIGHT);
+        
+        panel.add(lbl);
+        panel.add(val);
     }
 }
