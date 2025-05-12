@@ -25,7 +25,6 @@ public class MyFrame extends JFrame implements ActionListener, ChangeListener {
         JPanel mainPanel = new JPanel(new GridLayout(4, 1, 10, 10));
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         
-        // Pannello sesso
         JPanel sessoPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         sessoPanel.add(new JLabel("Sesso:"));
         
@@ -39,7 +38,6 @@ public class MyFrame extends JFrame implements ActionListener, ChangeListener {
         sessoPanel.add(femminaBtn);
         sessoPanel.add(maschioBtn);
         
-        // Pannello voto
         JPanel votoPanel = new JPanel(new BorderLayout());
         votoLabel = new JLabel("Voto: 5", JLabel.CENTER);
         
@@ -53,11 +51,9 @@ public class MyFrame extends JFrame implements ActionListener, ChangeListener {
         votoPanel.add(votoLabel, BorderLayout.NORTH);
         votoPanel.add(votoSlider, BorderLayout.CENTER);
         
-        // Pulsante invio
         JButton invioBtn = new JButton("Invia Valutazione");
         invioBtn.addActionListener(this);
         
-        // Messaggio
         messaggioLabel = new JLabel(" ", JLabel.CENTER);
         messaggioLabel.setForeground(Color.RED);
         

@@ -17,16 +17,13 @@ public class MyMainFrame extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         
-        // Pannello principale
         JPanel mainPanel = new JPanel(new BorderLayout(20, 20));
         mainPanel.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
         
-        // Titolo
         JLabel title = new JLabel("Sistema Valutazioni", JLabel.CENTER);
         title.setFont(new Font("Arial", Font.BOLD, 20));
         mainPanel.add(title, BorderLayout.NORTH);
         
-        // Pannello pulsanti
         JPanel buttonPanel = new JPanel(new GridLayout(2, 1, 10, 10));
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(20, 50, 20, 50));
         
