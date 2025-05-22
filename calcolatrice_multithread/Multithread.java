@@ -37,6 +37,7 @@ public class Multithread {
             threadSottrazione.join();
             threadMoltiplicazione.join();
             threadDivisione.join();
+            
             System.out.println("\n Risultati: ");
             System.out.println("Somma " + somma.getRisultato());
             System.out.println("Sottrazione " + sottrazione.getRisultato());
