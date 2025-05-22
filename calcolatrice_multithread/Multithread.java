@@ -23,9 +23,9 @@ public class Multithread {
         Operazione divisione = new Divisione(num1, num2);
 
         Thread threadSomma = new Thread(somma, "thread somma");
-        Thread threadSottrazione = new Thread(sottrazione, "thread somma");
-        Thread threadMoltiplicazione = new Thread(moltplicazione, "thread somma");
-        Thread threadDivisione = new Thread(divisione, "thread somma");
+        Thread threadSottrazione = new Thread(sottrazione, "thread sottrazione");
+        Thread threadMoltiplicazione = new Thread(moltplicazione, "thread moltiplicazione");
+        Thread threadDivisione = new Thread(divisione, "thread divisione");
 
         threadSomma.start();
         threadSottrazione.start();

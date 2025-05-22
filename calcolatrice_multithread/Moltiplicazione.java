@@ -9,7 +9,7 @@ public class Moltiplicazione extends Operazione{
     @Override
     public void run(){
         risultato = num1 * num2;
-        System.out.println("Thread moltiplicazione completato");
+        System.out.println(Thread.currentThread().getName() + " completato");
     }
     
 }

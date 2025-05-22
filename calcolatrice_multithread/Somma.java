@@ -9,7 +9,7 @@ public class Somma extends Operazione{
     @Override
     public void run(){
         risultato = num1 + num2;
-        System.out.println("Thread somma completato");
+        System.out.println(Thread.currentThread().getName() + " completato");
     }
     
 }

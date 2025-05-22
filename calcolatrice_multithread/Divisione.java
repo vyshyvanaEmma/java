@@ -14,7 +14,7 @@ public class Divisione extends Operazione{
         }else{
             risultato = num1 / num2;
         }
-        System.out.println("Thread divisione completato");
+        System.out.println(Thread.currentThread().getName() + " completato");
     }
     
 }
