@@ -1,4 +1,4 @@
-//Blocco che esegue il calcolo (10 * c)
+//Blocco che esegue il calcolo ((2a + 4) * (7b +3))
 public class Block4 extends Thread{
 
     private int p1, p2, risultato;
