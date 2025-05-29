@@ -1,3 +1,4 @@
+//Blocco che esegue il calcolo (2a + 4)
 public class Block1 extends Thread{
 
     private int a, risultato;

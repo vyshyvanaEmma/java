@@ -1,3 +1,4 @@
+//Blocco che esegue il calcolo (7b + 3)
 public class Block2 extends Thread{
     private int b, risultato;
 

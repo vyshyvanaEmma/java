@@ -1,25 +1,30 @@
 //Blocco che esegue il calcolo (10 * c)
-public class Block3 extends Thread{
+public class Block4 extends Thread{
 
-    private int c, risultato;
+    private int p1, p2, risultato;
 
-    public Block3(int c){
-        this.c = c;
+    public Block4(int p1, int p2){
+        this.p1 = p1;
+        this.p2 = p2;
     }
 
     public int getRisultato() {
         return risultato;
     }
 
-    public int getC() {
-        return c;
+    public int getP2() {
+        return p2;
     }
 
-    //esegue il calcolo 10 * c
+    public int getP1() {
+        return p1;
+    }
+
+    //esegue il calcolo (2a + 4) * (7b +3)
     @Override
     public void run() {
-        risultato = 10 * c;
-        System.out.println("Block 3 (10 * c): " + risultato);
+        risultato = p1 * p2;
+        System.out.println("Block 4 ((2a + 4) * (7b +3)): " + risultato);
         
         //faccio un  pausa per far effetto di tempo di eseguzione del calcolo
         try {
